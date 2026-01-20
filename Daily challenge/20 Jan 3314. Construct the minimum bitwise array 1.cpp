@@ -9,7 +9,7 @@
 //   10= 1010 
 //      ||
 //   11= 1011    11-2^1=9
-// number ko binary me krlo right se dekhna start kro jaise hi pehla zero mil jae ya
+// number ko binary me krlo right se dekhna start kro jaise hi pehla zero mil jae ya 
 // wo number hi end ho jae to usse 1 kam wha tak count rkho aur nums[i]-2^count-1 krdo ans aajaega
 class Solution {
 public:
