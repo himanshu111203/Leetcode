@@ -1,48 +1,24 @@
 // Backtracking  T.C O(n·2ⁿ)  S.C O(n·2ⁿ)
 class Solution {
 public:
-void solve(int i,int n,vector<string>&ans,string temp,int pre,vector<char>letter){
-    if(i==n){
-        ans.push_back(temp);
-        return;
+    void solve(int n,vector<string>&ans,string temp){
+        if(temp.size()==n){
+            ans.push_back(temp);
+            return;
+        }
+        for(char ch='a';ch<='c';ch++){
+            if(!temp.empty() && temp.back()==ch)
+            continue;
+            temp.push_back(ch);
+            solve(n,ans,temp);
+            temp.pop_back();
+        }
     }
-    if(pre==-1){
-        temp.push_back('a');
-        solve(i+1,n,ans,temp,0,letter);
-        temp.pop_back();
-        temp.push_back('b');
-        solve(i+1,n,ans,temp,1,letter);
-        temp.pop_back();
-        temp.push_back('c');
-        solve(i+1,n,ans,temp,2,letter);
-        temp.pop_back();
-    }
-    else if(pre==1){
-        temp.push_back(letter[(pre+2)%3]);
-        solve(i+1,n,ans,temp,(pre+2)%3,letter);
-        temp.pop_back();
-        temp.push_back(letter[(pre+1)%3]);
-        solve(i+1,n,ans,temp,(pre+1)%3,letter);
-        temp.pop_back();
-    }
-    else{
-    temp.push_back(letter[(pre+1)%3]);
-    solve(i+1,n,ans,temp,(pre+1)%3,letter);
-    temp.pop_back();
-    temp.push_back(letter[(pre+2)%3]);
-    solve(i+1,n,ans,temp,(pre+2)%3,letter);
-    temp.pop_back();
-    }
-}
     string getHappyString(int n, int k) {
 
-        vector<char>letter(3);
-        letter[0]='a';
-        letter[1]='b';
-        letter[2]='c';
         vector<string>ans;
         string temp;
-        solve(0,n,ans,temp,-1,letter);
+        solve(n,ans,temp);
         if(k>ans.size()) 
         return "";
         return ans[k-1];
