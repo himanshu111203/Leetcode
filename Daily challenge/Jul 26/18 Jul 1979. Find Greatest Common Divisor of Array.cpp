@@ -1,5 +1,5 @@
 class Solution {
-public:
+public: 
     int find(int a,int b){
         return (b==0) ?a :find(b,a%b);
     }
